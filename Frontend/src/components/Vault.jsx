@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SessionContext } from "../App";
+import { SessionContext, pageContext } from "../App";
 
 
 
@@ -7,6 +7,11 @@ import { SessionContext } from "../App";
 const Vault = () => {
     
     const sessionContext =  useContext(SessionContext);
+    const pContext = useContext(pageContext);
+    if(sessionContext.jwtToken === ""){
+        pContext.setCurrentPage("home");
+    }
+
     console.log("Vault" + sessionContext.jwtToken)
     return (
         <div>

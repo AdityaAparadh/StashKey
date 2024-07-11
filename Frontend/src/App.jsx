@@ -8,15 +8,24 @@ import SignupPage from './components/SignupPage'
 import HomePage from './components/HomePage'
 
 export const SessionContext = createContext();
+export const pageContext = createContext();
+
 
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken") || "");
+  const [currentPage, setCurrentPage] = useState("home");
+
 
   return (
     <SessionContext.Provider value={{ jwtToken, setJwtToken }}>
+      <pageContext.Provider value={{ currentPage, setCurrentPage }}>
 
-    { jwtToken === "" ? <LoginPage /> : <Vault />}
-
+        { currentPage === "home" && <HomePage /> }
+        { currentPage === "login" && <LoginPage /> }
+        { currentPage === "signup" && <SignupPage /> }
+        { currentPage === "vault" && <Vault /> }
+           
+        </pageContext.Provider>
     </SessionContext.Provider>
   );
 }

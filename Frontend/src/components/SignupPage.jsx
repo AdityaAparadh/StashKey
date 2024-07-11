@@ -1,6 +1,7 @@
 import SecurityQuestions from '../assets/SecurityQuestions.js';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+import { pageContext } from '../App.jsx';
 
 
 
@@ -10,6 +11,9 @@ const SignupPage = ()=> {
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+
+    const pContext = useContext(pageContext);
+
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
@@ -32,6 +36,7 @@ const SignupPage = ()=> {
     }
 
     return (
+        <>
         <form id="login-form">
 
             <h1>Sign Up</h1>
@@ -72,7 +77,8 @@ const SignupPage = ()=> {
         </form>
 
 
-
+        <h5 onClick={ ()=>{ pContext.setCurrentPage("login") }}> Already have an account? </h5>
+        </>
     )
 
 

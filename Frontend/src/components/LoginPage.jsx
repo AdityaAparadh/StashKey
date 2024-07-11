@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { SessionContext } from "../App";
+import { SessionContext, pageContext } from "../App";
+
 
 
 const LoginPage = ()=> {
@@ -9,7 +10,11 @@ const LoginPage = ()=> {
     const [ password, setPassword ] = useState("");
 
     const loginContext = useContext(SessionContext);
+    const pContext = useContext(pageContext);
 
+    if(loginContext.jwtToken !== ""){
+        pContext.setCurrentPage("vault");
+    }
 
     const LoginHandler = () => {
         axios.post( import.meta.env.VITE_BACKEND_URL + "/login", 
@@ -28,6 +33,7 @@ const LoginPage = ()=> {
 
 
     return (
+        <>
         <form id="login-form">
 
             <h1>Login</h1>
@@ -43,8 +49,9 @@ const LoginPage = ()=> {
             
             > Log In </button>
 
-
         </form>
+            <h5 onClick={ ()=>{ pContext.setCurrentPage("signup") }}> Sign Up? </h5>
+    </>
     )
 }
 
