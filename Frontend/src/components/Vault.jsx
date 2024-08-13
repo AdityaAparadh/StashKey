@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useState, createContext, useContext } from "react";
 import { SessionContext, pageContext } from "../App";
 import Topbar from "./vault/Topbar";
 import Sidebar from "./vault/Sidebar";
 import PasswordGen from "./vault/PasswordGen";
+import BreachCheck from "./vault/BreachCheck";
 
 
 
@@ -30,22 +31,34 @@ import PasswordGen from "./vault/PasswordGen";
 //         </div>
 //     )
 // }
+
+export const vaultContext = createContext();
+
 const Vault = ()=>{
     const sessionContext =  useContext(SessionContext);
     const pContext = useContext(pageContext);
+    
+    const [ vaultPage, setVaultPage ] = useState("passgen");
+    
     if(sessionContext.jwtToken === ""){
         pContext.setCurrentPage("home");
     }
 
     return(
+        <vaultContext.Provider value={{ vaultPage, setVaultPage }}>
         <div className="bg-black w-screen h-screen">
             <Topbar></Topbar>
             <div className="flex flex-row w-full h-full ">
 
             <Sidebar></Sidebar>
-            <PasswordGen ></PasswordGen>
+            {/* <PasswordGen ></PasswordGen> */}
+            {/* <BreachCheck /> */}
+            { vaultPage === "passgen" && <PasswordGen></PasswordGen> }
+            { vaultPage === "breachcheck" && <BreachCheck></BreachCheck> }
+            
             </div>
         </div>
+        </vaultContext.Provider>
     )
 
 
