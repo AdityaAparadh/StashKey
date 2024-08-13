@@ -36,31 +36,12 @@ const SignupPage = ()=> {
     }
 
     return (
-        <>
-        <form id="login-form">
+        <div className="mocha bg-base h-screen w-screen flex flex-col items-center justify-center">
 
-            <h1>Sign Up</h1>
-            <input type="text" id="signup-name" placeholder="Name" value={name} onChange={ e => setName(e.target.value)}    />
-            <input type="email" id="signup-email" placeholder="Email"  value={email} onChange={ e => setEmail(e.target.value)}  />
-            <input type="password" id="signup-password" placeholder="Master Password" onChange={ e => setPassword(e.target.value)} />
-
-
-            {/* <select id="security-question">
-
-            {
-                Object.keys(SecurityQuestions).map((key, index) => {
-                    return (
-                        <option value={key}>{SecurityQuestions[key]}</option>
-                    )
-                })
-            }
-                
-            </select>
-
-
-            <input type="text" id="signup-security-code" placeholder="Security Question Answer" />
-            <input type="text" id="signup-masterpass-hint" placeholder="Security Question Answer" /> */}
-
+            <h1 className="text-text text-5xl m-5">Sign Up</h1>
+            <input className="m-3 p-1 rounded bg-surface1 border-overlay2 text-text " type="text" id="signup-name" placeholder="Name" value={name} onChange={ e => setName(e.target.value)}    />
+            <input className="m-3 p-1 rounded bg-surface1 border-overlay2 text-text " type="email" id="signup-email" placeholder="Email"  value={email} onChange={ e => setEmail(e.target.value)}  />
+            <input className="m-3 p-1 rounded bg-surface1 border-overlay2 text-text " type="password" id="signup-password" placeholder="Master Password" onChange={ e => setPassword(e.target.value)} />
 
             <button 
             type="submit"
@@ -70,15 +51,15 @@ const SignupPage = ()=> {
                 submissionHander();
 
             }}
+            className="w-36 h-10 mt-5 rounded-lg bg-mauve"
             
             > Sign Up </button>
 
 
-        </form>
 
 
-        <h5 onClick={ ()=>{ pContext.setCurrentPage("login") }}> Already have an account? </h5>
-        </>
+        <h5 className="text-text mt-5 cursor-pointer" onClick={ ()=>{ pContext.setCurrentPage("login") }}> Already have an account? </h5>
+        </div>
     )
 
 

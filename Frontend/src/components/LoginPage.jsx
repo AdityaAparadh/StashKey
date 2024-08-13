@@ -30,15 +30,20 @@ const LoginPage = ()=> {
             console.log(error);
         })
     }
-
+    const keyPressHandler = (e) =>{
+        if(e.key === "Enter"){
+            LoginHandler();
+        }
+    }
 
     return (
-        <>
-        <form id="login-form">
+        <div className="mocha bg-base h-screen w-screen flex flex-col items-center justify-center" 
+        onKeyDown={keyPressHandler}
+        >
 
-            <h1>Login</h1>
-            <input type="email" id="login-email" placeholder="Email"  value={email} onChange={ e => setEmail(e.target.value)}  />
-            <input type="password" id="login-password" placeholder="Master Password" onChange={ e => setPassword(e.target.value)} />
+            <h1 className="text-text text-5xl m-5">Login</h1>
+            <input className="m-2 p-1 rounded bg-surface1 border-overlay2 text-text " type="email" id="login-email" placeholder="Email"  value={email} onChange={ e => setEmail(e.target.value)}  />
+            <input className="m-2 p-1 rounded bg-surface1 border-overlay2 text-text" type="password" id="login-password" placeholder="Master Password" onChange={ e => setPassword(e.target.value)} />
             <button 
             type="submit"
             id="login-button"
@@ -46,12 +51,11 @@ const LoginPage = ()=> {
                 e.preventDefault();
                 LoginHandler();
             }}
-            
+            className="w-36 h-10 mt-5 rounded-lg bg-mauve"
             > Log In </button>
 
-        </form>
-            <h5 onClick={ ()=>{ pContext.setCurrentPage("signup") }}> Sign Up? </h5>
-    </>
+            <h5 className=" text-text mt-20 cursor-pointer" onClick={ ()=>{ pContext.setCurrentPage("signup") }}> Sign Up? </h5>
+    </div>
     )
 }
 
