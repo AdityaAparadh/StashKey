@@ -28,18 +28,21 @@ exports.login = async (req, res) => {
     
     const user = await User.findOne({ email : email });
     if(!user){
+        res.status(404)
         res.json({ message : "User not found!" });
-    }
-    console.log(user.hashedPassword)
-    const isValid = await Bun.password.verify(masterPass, user.hashedPassword);
-
-    if(!isValid){
-        res.json({ message : "Invalid credentials!" });
+        
     }else{
 
-        const token = jwt.sign({ email : email }, process.env.JWT_SECRET_KEY, { expiresIn : '1h' });
-        res.json({ message : "Login successful!", token : token });
-    
+        const isValid = await Bun.password.verify(masterPass, user.hashedPassword);
+        
+        if(!isValid){
+            res.json({ message : "Invalid credentials!" });
+        }else{
+            
+            const token = jwt.sign({ email : email }, process.env.JWT_SECRET_KEY, { expiresIn : '1h' });
+            res.json({ message : "Login successful!", token : token });
+            
+        }
     }
 
 }

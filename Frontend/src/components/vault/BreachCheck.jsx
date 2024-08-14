@@ -64,9 +64,14 @@ const BreachCheck = ()=>{
             }} >
                 <h4 className='bg-mauve w-32 h-8 rounded-md text-base flex items-center justify-center'>Check </h4>
             </button>
+            {/* <div className="flex flex-col"> */}
+
             {searchState ? <div className='text-2xl'>Searching...</div> :<div className='mt-10 w-1/2 justify-center items-center flex flex-row text-5xl'>
-                {"Found :"} &nbsp; <div className={found ? "text-red" : "text-green"}  > { found } </div>&nbsp; {" Breaches"} 
+                {"Found "} &nbsp; <div className={found ? "text-red font-bold" : "text-green font-bold"}  > { found } </div>&nbsp; {" Times"} 
+                {/* { found ? <div className="text-lg" > It was found </div> : < div className="text-lg" > It wasnt found</div> } */}
+
             </div>}
+            {/* </div> */}
         </div>
     )
 }

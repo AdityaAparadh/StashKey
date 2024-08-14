@@ -28,6 +28,12 @@ const SignupPage = ()=> {
             }
         ).then((response) => {
             console.log(response.data);
+            // console.log(response.status)
+            if( response.status == 200 ){
+                alert("Created Account Successfully, Please Login!")
+            }else{
+                alert("Error Occured!")
+            }
 
         }).catch((error) => {
             console.log(error);

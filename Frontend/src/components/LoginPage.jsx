@@ -27,7 +27,7 @@ const LoginPage = ()=> {
             localStorage.setItem("jwtToken", response.data.token);
             loginContext.setJwtToken(response.data.token);
         }).catch((error) => {
-            console.log(error);
+            alert("Login Failed. Check your credentials")
         })
     }
     const keyPressHandler = (e) =>{
