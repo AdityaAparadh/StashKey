@@ -1,4 +1,3 @@
-import SecurityQuestions from '../assets/SecurityQuestions.js';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { pageContext } from '../App.jsx';
@@ -19,6 +18,11 @@ const SignupPage = ()=> {
 
     const submissionHander = () => {
 
+        if( name === "" || email === "" || password === "" ){
+            alert("Please fill all the fields!")
+            return;
+        }
+
         axios.post( BACKEND_URL + "/signup", 
             {
                 name: name,
@@ -31,18 +35,32 @@ const SignupPage = ()=> {
             // console.log(response.status)
             if( response.status == 200 ){
                 alert("Created Account Successfully, Please Login!")
+            }else if( response.status == 409 ){3
+                alert("User already exists!")
+            }else if( response.status == 400 ) {
+                alert("Invalid Request!")
             }else{
-                alert("Error Occured!")
+                alert("Something went wrong!")
             }
 
         }).catch((error) => {
+            if( error.response.status == 409 ){
+                alert("This email is already associated with an account. Choose another email or Sign In.")
+            }else{
+                alert("Something went wrong!")
+            }
             console.log(error);
         })
 
     }
+    const keyPressHandler = (e) =>{
+        if(e.key === "Enter"){
+            submissionHander();
+        }
+    }
 
     return (
-        <div className="mocha bg-base h-screen w-screen flex flex-col items-center justify-center">
+        <div className="mocha bg-base h-screen w-screen flex flex-col items-center justify-center" onKeyDown={keyPressHandler}>
 
             <h1 className="text-text text-5xl m-5">Sign Up</h1>
             <input className="m-3 p-1 rounded bg-surface1 border-overlay2 text-text " type="text" id="signup-name" placeholder="Name" value={name} onChange={ e => setName(e.target.value)}    />

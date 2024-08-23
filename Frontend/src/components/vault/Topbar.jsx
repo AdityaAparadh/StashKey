@@ -15,6 +15,7 @@ const Topbar = ()=>{
             <img src={Logo} className="h-11 w-11 mr-5" ></img>
             <h1 className="text-2xl text-mauve font-bold font-logo-font"> STASHKEY </h1>
             </div>
+            <div className="text-md text-text mr-8" >  </div>
             <button onClick={() => { 
                 localStorage.removeItem("jwtToken");
                 sessionContext.setJwtToken("");

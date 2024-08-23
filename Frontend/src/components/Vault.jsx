@@ -1,9 +1,10 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import { SessionContext, pageContext } from "../App";
 import Topbar from "./vault/Topbar";
 import Sidebar from "./vault/Sidebar";
 import PasswordGen from "./vault/PasswordGen";
 import BreachCheck from "./vault/BreachCheck";
+import Core from "./vault/Core";
 
 
 
@@ -42,9 +43,16 @@ const Vault = ()=>{
     if(sessionContext.jwtToken === ""){
         pContext.setCurrentPage("home");
     }
+    // [userData, setUserData] = useState({name: "", email: ""})
+    // useEffect(() => {
+    //     axios.get(import.meta.env.VITE_BACKEND_URL + "/vault",{
+    //         name: name,
+    //         email: email,
+    //     })
+    // },[])
 
     return(
-        <vaultContext.Provider value={{ vaultPage, setVaultPage }}>
+        <vaultContext.Provider value={  { vaultPage, setVaultPage }}>
         <div className="bg-black w-screen h-screen">
             <Topbar></Topbar>
             <div className="flex flex-row w-full h-full ">
@@ -54,7 +62,7 @@ const Vault = ()=>{
             {/* <BreachCheck /> */}
             { vaultPage === "passgen" && <PasswordGen></PasswordGen> }
             { vaultPage === "breachcheck" && <BreachCheck></BreachCheck> }
-            
+            { vaultPage === "core" && <Core />}
             </div>
         </div>
         </vaultContext.Provider>

@@ -22,12 +22,24 @@ const LoginPage = ()=> {
                 email: email,
                 masterPass: password
             }
-        ).then((response) => {
+        ).then((response) => { 
             console.log(response.data);
             localStorage.setItem("jwtToken", response.data.token);
             loginContext.setJwtToken(response.data.token);
+
         }).catch((error) => {
-            alert("Login Failed. Check your credentials")
+            if( !error.response){
+                alert("Network Error. Please check your Internet Connection")
+            }
+            if( error.response.status==401){
+                alert("Invalid Credentials")
+             }
+            if( error.response.status=404){
+                alert("User not found")
+            }
+            else
+                alert("Something went wrong!")
+            
         })
     }
     const keyPressHandler = (e) =>{

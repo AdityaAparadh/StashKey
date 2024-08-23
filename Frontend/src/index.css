@@ -15,7 +15,7 @@
   flex-direction: column;
 } */
 
-/* ! tailwindcss v3.4.9 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.4.10 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -598,6 +598,10 @@ video {
   --tw-contain-style:  ;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -610,12 +614,28 @@ video {
   margin: 1.25rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
 .mr-5 {
   margin-right: 1.25rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
 }
 
 .mt-10 {
@@ -670,12 +690,20 @@ video {
   width: 33.333333%;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-1\/5 {
   width: 20%;
 }
 
 .w-1\/6 {
   width: 16.666667%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-11 {
@@ -746,8 +774,16 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .rounded-lg {
@@ -792,6 +828,11 @@ video {
   background-color: rgba(var(--ctp-mauve), var(--tw-bg-opacity));
 }
 
+.bg-overlay0 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--ctp-overlay0), var(--tw-bg-opacity));
+}
+
 .bg-surface0 {
   --tw-bg-opacity: 1;
   background-color: rgba(var(--ctp-surface0), var(--tw-bg-opacity));
@@ -802,12 +843,29 @@ video {
   background-color: rgba(var(--ctp-surface1), var(--tw-bg-opacity));
 }
 
+.bg-text {
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--ctp-text), var(--tw-bg-opacity));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
 }
 
 .pt-8 {
@@ -836,6 +894,11 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {
