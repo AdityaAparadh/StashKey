@@ -1,5 +1,5 @@
 const express = require('express');
-const userController = require('./controllers/userController');
+
 const cors = require('cors')
 
 const app = express();
@@ -8,45 +8,42 @@ app.use(cors());
 
                     
 const port = 3000;
-app.post('/signup', async (req, res) => {
-        
-    if(!req.body.name || !req.body.email || !req.body.masterPass || !req.body.securityKey){
-        res.status(400).json({message : "Please provide all the required fields"});
-    }else{
-        userController.signup(req.body, res);    
-    }
-}
-);
 
-app.post('/login', async (req, res) => {
 
-    if(!req.body.email || !req.body.masterPass){
-        res.status(400).json({message : "Please provide all the required fields"});
-    }else{
-        userController.login(req.body, res);
-    }
+const AuthRouter = require('./routes/AuthRoutes');
+const vaultRouter = require('./routes/vaultRoutes')
+const cronRouter = require('./routes/cronRouter')
 
-});
+app.use('/auth', AuthRouter);
+app.use('/vault', vaultRouter);
+app.use('/cron', cronRouter )
 
-app.get('/vault', async (req, res) => {
+
+// app.get('/vault', async (req, res) => {
     
-        if(!req.headers.authorization){
-            res.status(400).json({message : "Please provide JWT Authorization header"});
-        }else{
-            userController.vault(req, res);
-        }
+//         if(!req.headers.authorization){
+//             res.status(400).json({message : "Please provide JWT Authorization header"});
+//         }else{
+//             userController.vault(req, res);
+//         }
     
-    });
+//     });
 
-app.post('/vault', async (req, res) => {
+// app.post('/vault', async (req, res) => {
 
-    if(!req.headers.authorization || !req.body.vault){
-        res.status(400).json({message : "Please provide JWT Authorization header and vault"});
-    }
-    else{
-        userController.updateVault(req, res);
-    }
-});
+//     if(!req.headers.authorization || !req.body.vault){
+//         res.status(400).json({message : "Please provide JWT Authorization header and vault"});
+//     }
+//     else{
+//         userController.updateVault(req, res);
+//     }
+// });
+
+
+
+// app.get('/user', async (req, res) => {
+//     userController.getUser(req, res);
+// });
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
